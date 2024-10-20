@@ -7,6 +7,12 @@ from hairloss_predictor import HairlossPredictor
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
+# Set the model path using the MODEL_REPO environment variable
+model_path = os.path.join(os.getenv('MODEL_REPO', '/usr/src/myapp'), 'model_file_name.pkl')
+
+# Initialize the predictor with the model file
+dp = HairlossPredictor(model_file=model_path)
+
 
 @app.route('/hairloss_predictor/', methods=['POST']) # path of the endpoint. Except only HTTP POST request
 def predict_str():
@@ -14,8 +20,6 @@ def predict_str():
     prediction_inout = request.get_json()
     return dp.predict_single_record(prediction_inout)
 
-
-dp = HairlossPredictor()
 # The code within this conditional block will only run the python file is executed as a
 # script. See https://realpython.com/if-name-main-python/
 if __name__ == '__main__':
