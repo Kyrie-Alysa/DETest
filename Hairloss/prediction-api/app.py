@@ -13,7 +13,6 @@ model_path = os.path.join(os.getenv('MODEL_REPO', '/usr/src/myapp'), 'model.jobl
 # Initialize the predictor with the model file
 dp = HairlossPredictor(model_file=model_path)
 
-
 @app.route('/hairloss_predictor/', methods=['POST']) # path of the endpoint. Except only HTTP POST request
 def predict_str():
     # the prediction input data in the message body as a JSON payload
