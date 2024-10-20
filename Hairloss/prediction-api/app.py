@@ -8,7 +8,7 @@ app = Flask(__name__)
 app.config["DEBUG"] = True
 
 # Set the model path using the MODEL_REPO environment variable
-model_path = os.path.join(os.getenv('MODEL_REPO', '/usr/src/myapp'), 'model_file_name.pkl')
+model_path = os.path.join(os.getenv('MODEL_REPO', '/usr/src/myapp'), 'model.joblib')
 
 # Initialize the predictor with the model file
 dp = HairlossPredictor(model_file=model_path)
